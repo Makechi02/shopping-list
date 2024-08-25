@@ -4,10 +4,9 @@ const ItemsList = ({items, editItem, removeItem, clearAllItems}) => {
     return (
         <div>
             <ul id={`shopping-list`} className={`space-y-2`}>
-                {items?.map((item, index) => (
+                {items?.map((item) => (
                     <Item
-                        key={index}
-                        index={index}
+                        key={item.id}
                         item={item}
                         editItem={editItem}
                         removeItem={removeItem}

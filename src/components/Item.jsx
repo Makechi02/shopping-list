@@ -2,15 +2,14 @@ import {useEffect, useRef, useState} from "react";
 import {FiCheck, FiEdit, FiTrash2} from "react-icons/fi";
 import {Tooltip} from "react-tooltip";
 
-const Item = ({item, index, editItem, removeItem}) => {
-
+const Item = ({item, editItem, removeItem}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editValue, setEditValue] = useState(item.name);
     const inputRef = useRef(null);
 
     const handleEdit = () => {
         if (isEditing) {
-            editItem(index, {name: editValue});
+            editItem(item.id, {name: editValue});
         }
 
         setIsEditing(prevState => !prevState);
@@ -18,7 +17,7 @@ const Item = ({item, index, editItem, removeItem}) => {
 
     const handleCheckItem = () => {
         const checkedItem = {...item, checked: !item.checked};
-        editItem(index, checkedItem);
+        editItem(item.id, checkedItem);
     }
 
     const handleKeyPress = (e) => {
@@ -58,16 +57,18 @@ const Item = ({item, index, editItem, removeItem}) => {
             )}
 
             <span className={`flex space-x-2`}>
+                {!item.checked && (
+                    <button
+                        onClick={handleEdit}
+                        className={`text-indigo-600 text-xl`}
+                        data-tooltip-id={`icons-tooltip`}
+                        data-tooltip-content={isEditing ? 'Save Changes' : 'Edit item'}
+                    >
+                        {isEditing ? <FiCheck/> : <FiEdit/>}
+                    </button>
+                )}
                 <button
-                    onClick={handleEdit}
-                    className={`text-indigo-600 text-xl`}
-                    data-tooltip-id={`icons-tooltip`}
-                    data-tooltip-content={isEditing ? 'Save Changes' : 'Edit item'}
-                >
-                    {isEditing ? <FiCheck/> : <FiEdit/>}
-                </button>
-                <button
-                    onClick={() => removeItem(index)}
+                    onClick={() => removeItem(item.id)}
                     className={`text-red-600 text-xl`}
                     data-tooltip-id={`icons-tooltip`}
                     data-tooltip-content={`Delete item`}

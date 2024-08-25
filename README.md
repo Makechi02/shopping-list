@@ -6,6 +6,7 @@ A simple and modern shopping list application built with React. This app allows 
 
 - **Add Items:** Add new items to your shopping list.
 - **View Items:** See all items in the list.
+- **Check / uncheck items:** Mark or unmark item as bought
 - **Edit Items:** Edit existing items by clicking the edit button.
 - **Remove Items:** Delete items from the list.
 - **Clear All Items:** Remove all items from the list at once.
@@ -16,12 +17,14 @@ A simple and modern shopping list application built with React. This app allows 
 - **Tailwind CSS:** For styling and responsive design.
 - **React Icons:** For a clean and minimalistic icon set.
 
+## Screenshot
+![Webpage screenshot](/public/assets/screenshots/FireShot%20Capture%20001%20-%20Shopping%20List%20-%20localhost.png)
+
 ## Continued Development
 
 Here are some planned enhancements and features for continued development:
 
 - **User Authentication:** Implement user accounts and authentication to save shopping lists per user.
-- **Persistent Storage:** Add functionality to save and load lists from local storage or a backend server.
 - **Categories:** Introduce categories or tags for items to better organize the shopping list.
 - **Search Functionality:** Implement a search bar to quickly find items in the list.
 - **Dark Mode:** Add a toggle for dark mode to improve user experience in low-light environments.
