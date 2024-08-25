@@ -8,7 +8,7 @@ const AddItemForm = ({addItem}) => {
         e.preventDefault();
 
         if (inputValue.trim() !== '') {
-            addItem(inputValue.trim());
+            addItem({name: inputValue.trim(), checked: false});
             setInputValue("");
         }
     }
