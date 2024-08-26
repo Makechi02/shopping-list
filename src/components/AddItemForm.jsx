@@ -1,8 +1,9 @@
 import {useState} from "react";
+import {useTheme} from "../context/ThemeContext.jsx";
 
 const AddItemForm = ({addItem}) => {
-
     const [inputValue, setInputValue] = useState('');
+    const {theme} = useTheme();
 
     const handleAddItem = (e) => {
         e.preventDefault();
@@ -20,11 +21,11 @@ const AddItemForm = ({addItem}) => {
                 placeholder={`Add a new Item`}
                 value={inputValue}
                 onChange={event => setInputValue(event.target.value)}
-                className={`flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-600`}
+                className={`flex-grow p-2 border rounded focus:outline-none focus:ring-2 ${theme === "dark" ? "bg-gray-800 text-white border-gray-600 focus:ring-indigo-400" : "bg-white text-black border-gray-300 focus:ring-indigo-600"}`}
             />
             <button
                 type={`submit`}
-                className={`bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600`}
+                className={`px-4 py-2 rounded focus:outline-none focus:ring-2 ${theme === "dark" ? "bg-indigo-400 text-black hover:bg-indigo-500 focus:ring-indigo-400" : "bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-600"}`}
             >
                 Add
             </button>

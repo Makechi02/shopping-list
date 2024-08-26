@@ -1,11 +1,13 @@
 import {useEffect, useRef, useState} from "react";
 import {FiCheck, FiEdit, FiTrash2} from "react-icons/fi";
 import {Tooltip} from "react-tooltip";
+import {useTheme} from "../context/ThemeContext.jsx";
 
 const Item = ({item, editItem, removeItem}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editValue, setEditValue] = useState(item.name);
     const inputRef = useRef(null);
+    const {theme} = useTheme();
 
     const handleEdit = () => {
         if (isEditing) {
@@ -35,7 +37,7 @@ const Item = ({item, editItem, removeItem}) => {
     return (
         <li
             onDoubleClick={handleCheckItem}
-            className={`flex justify-between items-center p-2 border-b border-gray-300 cursor-pointer`}
+            className={`flex justify-between items-center p-2 border-b cursor-pointer ${theme === "dark" ? "border-gray-700 bg-gray-800" : "border-gray-300 bg-white"}`}
         >
             <input
                 type={`checkbox`}
@@ -50,7 +52,7 @@ const Item = ({item, editItem, removeItem}) => {
                     value={editValue}
                     onKeyDown={handleKeyPress}
                     onChange={event => setEditValue(event.target.value)}
-                    className={`flex-grow p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-600 mr-2`}
+                    className={`flex-grow p-2 border rounded focus:outline-none focus:ring-2 ${theme === "dark" ? "bg-gray-700 border-gray-600 focus:ring-indigo-400 text-white" : "bg-white border-gray-300 focus:ring-indigo-600 text-black"} mr-2`}
                 />
             ) : (
                 <span className={`flex-grow ${item.checked && 'line-through text-gray-500'}`}>{item.name}</span>
@@ -60,23 +62,23 @@ const Item = ({item, editItem, removeItem}) => {
                 {!item.checked && (
                     <button
                         onClick={handleEdit}
-                        className={`text-indigo-600 text-xl`}
                         data-tooltip-id={`icons-tooltip`}
                         data-tooltip-content={isEditing ? 'Save Changes' : 'Edit item'}
+                        className={`text-xl ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}
                     >
                         {isEditing ? <FiCheck/> : <FiEdit/>}
                     </button>
                 )}
                 <button
                     onClick={() => removeItem(item.id)}
-                    className={`text-red-600 text-xl`}
                     data-tooltip-id={`icons-tooltip`}
                     data-tooltip-content={`Delete item`}
+                    className={`text-xl ${theme === "dark" ? "text-red-400" : "text-red-600"}`}
                 >
                     <FiTrash2/>
                 </button>
             </span>
-            <Tooltip id={`icons-tooltip`} />
+            <Tooltip id={`icons-tooltip`}/>
         </li>
     )
 }
