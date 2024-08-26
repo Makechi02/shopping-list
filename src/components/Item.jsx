@@ -1,13 +1,14 @@
 import {useEffect, useRef, useState} from "react";
 import {FiCheck, FiEdit, FiTrash2} from "react-icons/fi";
 import {Tooltip} from "react-tooltip";
-import {useTheme} from "../context/ThemeContext.jsx";
+import {useItems, useTheme} from "../hooks";
 
-const Item = ({item, editItem, removeItem}) => {
+const Item = ({item}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editValue, setEditValue] = useState(item.name);
     const inputRef = useRef(null);
     const {theme} = useTheme();
+    const {editItem, removeItem} = useItems();
 
     const handleEdit = () => {
         if (isEditing) {

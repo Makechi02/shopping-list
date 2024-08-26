@@ -1,19 +1,15 @@
 import Item from "./Item.jsx";
-import {useTheme} from "../context/ThemeContext.jsx";
+import {useItems, useTheme} from "../hooks";
 
-const ItemsList = ({items, editItem, removeItem, clearAllItems}) => {
+const ItemsList = () => {
     const {theme} = useTheme();
+    const {items, clearAllItems} = useItems();
 
     return (
         <div>
             <ul id={`shopping-list`} className={`space-y-2`}>
                 {items?.map((item) => (
-                    <Item
-                        key={item.id}
-                        item={item}
-                        editItem={editItem}
-                        removeItem={removeItem}
-                    />
+                    <Item key={item.id} item={item} />
                 ))}
             </ul>
 

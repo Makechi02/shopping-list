@@ -1,9 +1,10 @@
 import {useState} from "react";
-import {useTheme} from "../context/ThemeContext.jsx";
+import {useItems, useTheme} from "../hooks";
 
-const AddItemForm = ({addItem}) => {
+const AddItemForm = () => {
     const [inputValue, setInputValue] = useState('');
     const {theme} = useTheme();
+    const {addItem} = useItems();
 
     const handleAddItem = (e) => {
         e.preventDefault();

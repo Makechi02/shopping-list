@@ -1,8 +1,8 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 
-const ThemeContext = createContext({});
+export const ThemeContext = createContext({});
 
-const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({children}) => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const [theme, setTheme] = useState(prefersDark ? 'dark' : 'light');
 
@@ -24,7 +24,7 @@ const ThemeProvider = ({ children }) => {
     };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{theme, toggleTheme}}>
             <div className={theme === 'dark' ? 'dark' : ''}>
                 {children}
             </div>
@@ -32,6 +32,4 @@ const ThemeProvider = ({ children }) => {
     );
 };
 
-export const useTheme = () => useContext(ThemeContext);
-
-export { ThemeContext, ThemeProvider };
+export default ThemeProvider;
