@@ -17,8 +17,12 @@ A simple and modern shopping list application built with React. This app allows 
 - **Tailwind CSS:** For styling and responsive design.
 - **React Icons:** For a clean and minimalistic icon set.
 
-## Screenshot
-![Webpage screenshot](/public/assets/screenshots/FireShot%20Capture%20001%20-%20Shopping%20List%20-%20localhost.png)
+## Screenshots
+Light Mode
+![light mode screenshot](/public/assets/screenshots/FireShot%20Capture%20003%20-%20Shopping%20List%20-%20localhost.png)
+
+Dark Mode
+![light mode screenshot](/public/assets/screenshots/FireShot%20Capture%20002%20-%20Shopping%20List%20-%20localhost.png)
 
 ## Continued Development
 
@@ -27,8 +31,11 @@ Here are some planned enhancements and features for continued development:
 - **User Authentication:** Implement user accounts and authentication to save shopping lists per user.
 - **Categories:** Introduce categories or tags for items to better organize the shopping list.
 - **Search Functionality:** Implement a search bar to quickly find items in the list.
-- **Dark Mode:** Add a toggle for dark mode to improve user experience in low-light environments.
 - **Sort Items:** Allow users to sort items based on different criteria (e.g., alphabetical, by date added).
+- **Item Prioritization:** Allow users to prioritize items in the list.
+- **Quantity & Units:** Introduce quantities and units for items for a better shopping.
+- **Share List:** Allow users to share the list as a link, PDF or even CSV.
+- **Price Tracking:** Allow users to add prices for items for calculations 
 
 ## Contributing
 
