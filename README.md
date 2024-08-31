@@ -19,10 +19,10 @@ A simple and modern shopping list application built with React. This app allows 
 
 ## Screenshots
 Light Mode
-![light mode screenshot](/public/assets/screenshots/FireShot%20Capture%20003%20-%20Shopping%20List%20-%20localhost.png)
+![light mode screenshot](/screenshots/FireShot%20Capture%20003%20-%20Shopping%20List%20-%20localhost.png)
 
 Dark Mode
-![light mode screenshot](/public/assets/screenshots/FireShot%20Capture%20002%20-%20Shopping%20List%20-%20localhost.png)
+![dark mode screenshot](/screenshots/FireShot%20Capture%20002%20-%20Shopping%20List%20-%20localhost.png)
 
 ## Continued Development
 
