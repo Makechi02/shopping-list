@@ -7,18 +7,24 @@ const ItemsList = () => {
 
     return (
         <div>
-            <ul id={`shopping-list`} className={`space-y-2`}>
-                {items?.map((item) => (
-                    <Item key={item.id} item={item} />
-                ))}
-            </ul>
+            {items.length > 0 ? (
+                <>
+                    <ul id={`shopping-list`} className={`space-y-2`}>
+                        {items?.map((item) => (
+                            <Item key={item.id} item={item}/>
+                        ))}
+                    </ul>
 
-            <button
-                onClick={clearAllItems}
-                className={`w-full mt-4 px-4 py-2 rounded ${theme === "dark" ? "bg-red-700 text-white hover:bg-red-800" : "bg-red-600 text-white hover:bg-red-700"} focus:outline-none focus:ring-2 focus:ring-red-600`}
-            >
-                Clear All
-            </button>
+                    <button
+                        onClick={clearAllItems}
+                        className={`w-full mt-4 px-4 py-2 rounded ${theme === "dark" ? "bg-red-700 text-white hover:bg-red-800" : "bg-red-600 text-white hover:bg-red-700"} focus:outline-none focus:ring-2 focus:ring-red-600`}
+                    >
+                        Clear All
+                    </button>
+                </>
+            ) : (
+                <p className={`text-center `}>No Items in the list</p>
+            )}
         </div>
     )
 }
