@@ -1,11 +1,20 @@
 import {createContext, useEffect, useState} from "react";
-import {clearAllItemsFromDB, deleteItem, getAllItems, saveItem, updateItem} from "../utils/database.js";
+import {clearAllItemsFromDB, deleteItem, getAllItems, getItemById, saveItem, updateItem} from "../utils/database.js";
 
 export const ItemsContext = createContext({});
 
 const ItemsProvider = ({children}) => {
 
     const [items, setItems] = useState([]);
+    const [units ] = useState([
+        {unit: "n/a", name: "No Unit"},
+        {unit: "kg", name: "kilograms"},
+        {unit: "g", name: "grams"},
+        {unit: "L", name: "litres"},
+        {unit: "ml", name: "millilitres"},
+        {unit: "pcs", name: "pieces"},
+        {unit: "pkt", name: "packets"},
+    ]);
 
     useEffect(() => {
         async function fetchItems() {
@@ -20,6 +29,10 @@ const ItemsProvider = ({children}) => {
         await saveItem(newItem);
         setItems(await getAllItems());
     };
+
+    const getItem = async (id) => {
+        return await getItemById(id);
+    }
 
     const editItem = async (itemId, newItem) => {
         const updatedItem = {...newItem, id: itemId};
@@ -38,7 +51,7 @@ const ItemsProvider = ({children}) => {
     };
 
     return (
-        <ItemsContext.Provider value={{items, addItem, editItem, removeItem, clearAllItems}}>
+        <ItemsContext.Provider value={{items, units, addItem, editItem, removeItem, clearAllItems, getItem}}>
             {children}
         </ItemsContext.Provider>
     )

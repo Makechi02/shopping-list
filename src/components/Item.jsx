@@ -1,39 +1,16 @@
-import {useEffect, useRef, useState} from "react";
-import {FiCheck, FiEdit, FiTrash2} from "react-icons/fi";
+import {FiEdit, FiTrash2} from "react-icons/fi";
 import {Tooltip} from "react-tooltip";
 import {useItems, useTheme} from "../hooks";
+import {Link} from "react-router-dom";
 
 const Item = ({item}) => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [editValue, setEditValue] = useState(item.name);
-    const inputRef = useRef(null);
     const {theme} = useTheme();
     const {editItem, removeItem} = useItems();
-
-    const handleEdit = () => {
-        if (isEditing) {
-            editItem(item.id, {name: editValue});
-        }
-
-        setIsEditing(prevState => !prevState);
-    }
 
     const handleCheckItem = () => {
         const checkedItem = {...item, checked: !item.checked};
         editItem(item.id, checkedItem);
     }
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            handleEdit();
-        }
-    }
-
-    useEffect(() => {
-        if (isEditing && inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [isEditing]);
 
     return (
         <li
@@ -47,29 +24,22 @@ const Item = ({item}) => {
                 onChange={handleCheckItem}
             />
 
-            {isEditing ? (
-                <input
-                    ref={inputRef}
-                    value={editValue}
-                    onKeyDown={handleKeyPress}
-                    onChange={event => setEditValue(event.target.value)}
-                    className={`flex-grow p-2 border rounded focus:outline-none focus:ring-2 ${theme === "dark" ? "bg-gray-700 border-gray-600 focus:ring-indigo-400 text-white" : "bg-white border-gray-300 focus:ring-indigo-600 text-black"} mr-2`}
-                />
-            ) : (
-                <span className={`flex-grow ${item.checked && 'line-through text-gray-500'}`}>{item.name}</span>
-            )}
+            <span className={`flex-grow ${item.checked && 'line-through text-gray-500'}`}>
+                {item.name}: {item.quantity} {item.unit === 'n/a' ? '' : item.unit}
+            </span>
 
             <span className={`flex space-x-2`}>
                 {!item.checked && (
-                    <button
-                        onClick={handleEdit}
+                    <Link
+                        to={`/edit-item/${item.id}`}
                         data-tooltip-id={`icons-tooltip`}
-                        data-tooltip-content={isEditing ? 'Save Changes' : 'Edit item'}
+                        data-tooltip-content={'Edit item'}
                         className={`text-xl ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}
                     >
-                        {isEditing ? <FiCheck/> : <FiEdit/>}
-                    </button>
+                        <FiEdit/>
+                    </Link>
                 )}
+
                 <button
                     onClick={() => removeItem(item.id)}
                     data-tooltip-id={`icons-tooltip`}

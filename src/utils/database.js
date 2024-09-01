@@ -26,6 +26,13 @@ export async function getAllItems() {
     return db.getAll(STORE_NAME);
 }
 
+export async function getItemById(id) {
+    const db = await initDB();
+    const transaction = db.transaction(STORE_NAME, 'readonly');
+    const store = transaction.objectStore(STORE_NAME);
+    return await store.get(Number(id));
+}
+
 export async function updateItem(item) {
     const db = await initDB();
     const tx = db.transaction(STORE_NAME, 'readwrite');

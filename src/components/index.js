@@ -1,4 +1,5 @@
+import Home from "./Home.jsx";
 import AddItemForm from "./AddItemForm.jsx";
-import ItemsList from "./ItemsList.jsx";
+import EditItemForm from "./EditItemForm.jsx";
 
-export {AddItemForm, ItemsList}
+export {Home, AddItemForm, EditItemForm}

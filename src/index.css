@@ -5,3 +5,34 @@
 * {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
+
+.heading {
+    @apply text-2xl font-semibold;
+}
+
+.page-container {
+    @apply p-4 sm:p-6 rounded-2xl shadow-lg max-w-xl w-full;
+}
+
+.btn {
+    @apply px-4 py-2 rounded-full focus:outline-none focus:ring-2;
+}
+
+.input {
+    @apply flex-grow p-2 border rounded focus:outline-none focus:ring-2;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
