@@ -2,6 +2,8 @@ import {useTheme} from "./hooks/index.js";
 import {Route, Routes} from "react-router-dom";
 import {AddItemForm, EditItemForm, Home} from "./components";
 import {FiMoon, FiSun} from "react-icons/fi";
+import {ToastContainer, Zoom} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
     const {theme, toggleTheme} = useTheme();
@@ -20,6 +22,8 @@ function App() {
             >
                 {theme === 'light' ? <FiMoon/> : <FiSun/>}
             </button>
+
+            <ToastContainer transition={Zoom} theme={theme === 'dark' ? 'dark' : 'light'} />
         </main>
     );
 }

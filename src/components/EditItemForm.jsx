@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useItems, useTheme} from "../hooks";
 import {useNavigate, useParams} from "react-router-dom";
 import BackBtn from "./BackBtn.jsx";
+import {toast} from "react-toastify";
 
 const EditItemForm = () => {
     const {theme} = useTheme();
@@ -19,12 +20,12 @@ const EditItemForm = () => {
         e.preventDefault();
 
         if (name.trim() === '') {
-            alert("Item name can't be blank");
+            toast.error("Item name can't be blank");
             return;
         }
 
         if (quantity?.trim() === '' || isNaN(quantity) || quantity <= 0) {
-            alert("Please enter a valid item quantity");
+            toast.error("Please enter a valid item quantity");
             return;
         }
 
@@ -33,7 +34,7 @@ const EditItemForm = () => {
         setName("");
         setQuantity("");
         setItemUnit('n/a');
-        alert("Item updated successfully");
+        toast.success("Item updated successfully");
         navigate("/");
     }
 

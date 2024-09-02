@@ -2,6 +2,7 @@ import {FiEdit, FiTrash2} from "react-icons/fi";
 import {Tooltip} from "react-tooltip";
 import {useItems, useTheme} from "../hooks";
 import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
 
 const Item = ({item}) => {
     const {theme} = useTheme();
@@ -10,6 +11,11 @@ const Item = ({item}) => {
     const handleCheckItem = () => {
         const checkedItem = {...item, checked: !item.checked};
         editItem(item.id, checkedItem);
+    }
+
+    const handleDeleteItem = () => {
+        removeItem(item.id);
+        toast.success(`${item.name} deleted successfully`);
     }
 
     return (
@@ -41,7 +47,7 @@ const Item = ({item}) => {
                 )}
 
                 <button
-                    onClick={() => removeItem(item.id)}
+                    onClick={handleDeleteItem}
                     data-tooltip-id={`icons-tooltip`}
                     data-tooltip-content={`Delete item`}
                     className={`text-xl ${theme === "dark" ? "text-red-400" : "text-red-600"}`}

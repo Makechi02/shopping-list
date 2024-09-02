@@ -2,6 +2,7 @@ import {useState} from "react";
 import {useItems, useTheme} from "../hooks";
 import {useNavigate} from "react-router-dom";
 import BackBtn from "./BackBtn.jsx";
+import {toast} from "react-toastify";
 
 const AddItemForm = () => {
     const {theme} = useTheme();
@@ -17,12 +18,12 @@ const AddItemForm = () => {
         e.preventDefault();
 
         if (name.trim() === '') {
-            alert("Item name can't be blank");
+            toast.error("Item name can't be blank");
             return;
         }
 
         if (quantity?.trim() === '' || isNaN(quantity) || quantity <= 0) {
-            alert("Please enter a valid item quantity");
+            toast.error("Please enter a valid item quantity");
             return;
         }
 
@@ -31,7 +32,7 @@ const AddItemForm = () => {
         setName("");
         setQuantity("");
         setUnit('n/a');
-        alert("Item added successfully");
+        toast.success("Item added successfully");
         navigate("/");
     }
 
@@ -39,8 +40,9 @@ const AddItemForm = () => {
         <div className={`page-container container ${theme === "dark" ? "bg-gray-800" : "bg-white"}`}>
             <div className={`flex items-center mb-6`}>
                 <BackBtn theme={theme}/>
-                <h1 className={`heading text-center flex-grow ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}>Add
-                    Item</h1>
+                <h1 className={`heading text-center flex-grow ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}>
+                    Add Item
+                </h1>
             </div>
 
             <form className={`flex flex-col space-y-3 mb-4`} onSubmit={handleAddItem}>
