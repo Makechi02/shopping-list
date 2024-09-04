@@ -23,3 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .prettierrc
+
+favicon_io.zip
